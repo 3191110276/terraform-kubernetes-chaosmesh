@@ -1,1 +1,1 @@
-# terraform-kubernetes-chaosmesh
+# Module for deploying CNCF Chaos Mesh
