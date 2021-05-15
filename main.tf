@@ -16,7 +16,7 @@ terraform {
 
 
 ############################################################
-# CREATE APPDYNAMICS NAMESPACE
+# CREATE CHAOSMESH NAMESPACE
 ############################################################
 resource "kubernetes_namespace" "chaosmesh" {
   count = var.create_namespace ? 1 : 0
@@ -24,4 +24,16 @@ resource "kubernetes_namespace" "chaosmesh" {
   metadata {
     name = var.namespace
   }
+}
+
+
+############################################################
+# CREATE CHAOSMESH CRDS
+############################################################
+resource "helm_release" "chaosmesh" {
+  name       = "chaosmesh"
+
+  chart      = "${path.module}/helm/"
+
+  namespace  = var.namespace
 }
