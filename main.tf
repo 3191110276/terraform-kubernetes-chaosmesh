@@ -31,6 +31,8 @@ resource "kubernetes_namespace" "chaosmesh" {
 # CREATE CHAOSMESH CRDS
 ############################################################
 resource "helm_release" "chaosmesh" {
+  depends_on = [kubernetes_namespace.chaosmesh]
+  
   name       = "chaosmesh"
 
   chart      = "${path.module}/helm/"
